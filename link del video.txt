@@ -1,0 +1,11 @@
+https://www.youtube.com/watch?v=fjuIeiA8QkE → link del vidoe de node js
+
+minuto: 54:24
+
+
+  if (correo || contrasena) {
+    alert("Los campos estan imcompletos");
+    res
+      .status(400)
+      .send({ status: "Error", message: "Los campos estan imcompletos" });
+  }

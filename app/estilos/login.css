@@ -1,0 +1,40 @@
+.texBienvenido {
+  font-size: 50px;
+}
+.fondo {
+  width: 450px;
+  margin: 40px auto;
+  border: 2px solid #008b8b;
+  background-color: #008b8b;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+#login {
+  border: 2px;
+  text-align: center;
+}
+label {
+  font-size: 1.5em;
+}
+#correo,
+#password {
+  size: 20;
+}
+button {
+  font-size: 1.5em;
+}
+.cambioDeColor:hover {
+  background-color: rgb(105, 247, 83); /* Un tono verdoso claro */
+  cursor: pointer;
+}
+.tabla2 {
+  text-align: center;
+  align-content: center5;
+}
+p {
+  text-align: center;
+}

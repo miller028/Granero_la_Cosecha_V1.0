@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registro login</title>
+    <script src="registro.js" defer></script>
+    <!-- AQUÍ SE AGREGA LA HOJA DE ESTILOS -->
+    <link rel="stylesheet" href="/registro.css" />
+  </head>
+  <body>
+    <section class="fondo">
+      <form id="formulario">
+        <table align="center">
+          <h2>Registro de usuarios</h2>
+          <tr>
+            <!-- Fila 1, con 2 Columnas -->
+            <td><label>Nombres:</label></td>
+            <td><input type="text" name="nombre" id="nombres" /></td>
+          </tr>
+          <tr>
+            <!-- Fila 2, con 2 Columnas -->
+            <td><label>Apellidos:</label></td>
+            <td>
+              <input type="text" name="apellidos" id="apellidos" />
+            </td>
+          </tr>
+          <tr>
+            <!-- Fila 3, con 2 Columnas -->
+            <td><label> Correo:</label></td>
+            <td><input type="mail" name="correo" id="correo" /></td>
+          </tr>
+          <tr>
+            <!-- Fila 4, con 2 Columnas -->
+            <td><label> Contraseña:</label></td>
+            <td>
+              <input type="password" name="contrsena" id="contrasena" />
+            </td>
+          </tr>
+        </table>
+        <button type="submit" class="cambioDeColor">Registrarse</button>
+      </form>
+      <a href="/">Salir</a>
+    </section>
+  </body>
+</html>

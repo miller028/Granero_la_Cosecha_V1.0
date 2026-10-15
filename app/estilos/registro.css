@@ -1,0 +1,33 @@
+.fondo {
+  width: 450px;
+  margin: 40px auto;
+  border: 2px solid #008b8b;
+  background-color: #008b8b;
+  border-radius: 8px;
+  box-shadow:
+    0 4px 8px 0 rgba(0, 0, 0, 0.2),
+    0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+#formulario {
+  border: 2px;
+  text-align: center;
+}
+table {
+  border: 2px;
+}
+td,
+button {
+  font-size: 1.5em;
+}
+#nombres,
+#apellildos,
+#correo,
+#contrasena {
+  size: 20;
+}
+.cambioDeColor:hover {
+  background-color: rgb(105, 247, 83); /* Un tono verdoso claro */
+  cursor: pointer;
+}

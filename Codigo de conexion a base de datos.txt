@@ -1,0 +1,34 @@
+import mysql from "mysql2/promise";
+async function conectar() {
+  try {
+    const conexion = await mysql.createConnection({
+      host: "localhost",
+      database: "tiendaMiller",
+      user: "root",
+      password: "1234",
+    });
+    console.log("Conexion exitosa");
+
+    // --- AQUÍ ENVIAS LOS DATOS A MYSQL ---
+    const sql =
+      "INSERT INTO USUARIOS (Nombres, Apellidos, Correo, contraseña) VALUES (?, ?, ?, ?)";
+    const valores = [
+      "Miller Andres",
+      "Salas Alvarez",
+      "salitas028@email.com",
+      "1234",
+    ];
+
+    const [resultado] = await conexion.execute(sql, valores);
+    console.log(
+      "¡Datos enviados y guardados con éxito! ID asignado:",
+      resultado.insertId,
+    );
+    // -------------------------------------
+    await conexion.end();
+  } catch (error) {
+    console.error("Error al conectar:", error);
+  }
+}
+conectar();
+export { conectar };

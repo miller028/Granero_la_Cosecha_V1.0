@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Enviar datos del formulario a MySQL</h3>
+    <script type="module">
+      // 2. Importamos la función especificando la ruta de tu archivo JS
+      import { conectar } from "./conexion.js";
+      function iniciarProceso() {
+        // 1. Llamamos a la función para obtener la conexión abierta
+        const conexion = conectar();
+      }
+      // Ejecutamos la función principal
+      iniciarProceso();
+    </script>
+  </body>
+</html>
