@@ -19,13 +19,25 @@ async function registroSistema(req, res) {
   let correo = req.body.correo;
   let contrasena = req.body.contrasena;
   // Validacion de campos no vacios: ↓
-  if (!nombres || !apellidos || !correo || !contrasena) {
+  if (!nombres && !apellidos && !correo && !contrasena) {
     // Mensaje de error si los campos estan vacios que se envia al frontend: ↓
     return res.status(400).json({
       success: false,
-      message: "Los campos están incompletos",
+      message:
+        "Los campos de Nombre, Apelllidos, Correo y Contraseña estan vacios",
+    });
+  } else if (!nombres && !apellidos && !correo) {
+    return res.status(400).json({
+      success: false,
+      message: "Los campos de Nombre, Apelllidos y Correo estan vacios",
     });
   }
+  return res.status(400).json({
+    success: false,
+    message:
+      "Los campos de Nombre, Apelllidos, Correo y Contraseña estan vacios",
+  });
+
   // Validacion de correo de usuario en base de datos que no exista para su registro: ↓
   let usuarioaVerificar = usuarios.find((usuario) => usuario.correo === correo);
   if (usuarioaVerificar) {
