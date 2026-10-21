@@ -10,8 +10,9 @@ import { methods as recuperacionContrasena } from "./controladores/recuperacionP
 //Servidor:
 let app = express();
 app.set("port", 4000);
-app.listen(app.get("port"));
-console.log("Servidor corriendo en puerto", app.get("port"));
+app.listen(app.get("port"), "0.0.0.0", () => {
+  console.log("Servidor corriendo en puerto", app.get("port"));
+});
 
 // Configuracion:
 app.use(express.static(__dirname + "/public"));
