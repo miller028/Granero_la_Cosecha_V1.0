@@ -11,14 +11,13 @@ const usuarios = [
   },
 ];
 */
-async function ingresarSistema(req, res) {}
 async function registroSistema(req, res) {
   console.log(req.body);
   let nombres = req.body.nombres;
   let apellidos = req.body.apellidos;
   let correo = req.body.correo;
   let contrasena = req.body.contrasena;
-  // Validacion de campos no vacios: ↓
+  // Validacion de campos vacios: ↓
   if (!nombres && !apellidos && !correo && !contrasena) {
     // Mensaje de error si los campos estan vacios que se envia al frontend: ↓
     return res.status(400).json({
@@ -26,23 +25,37 @@ async function registroSistema(req, res) {
       message:
         "Los campos de Nombre, Apelllidos, Correo y Contraseña estan vacios",
     });
-  } else if (!nombres && !apellidos && !correo) {
+  } else if (!nombres) {
     return res.status(400).json({
       success: false,
-      message: "Los campos de Nombre, Apelllidos y Correo estan vacios",
+      message: "El campo Nombres esta vacio",
+    });
+  } else if (!apellidos) {
+    return res.status(400).json({
+      success: false,
+      message: "El campo Apellidos esta vacio",
+    });
+  } else if (!correo) {
+    return res.status(400).json({
+      success: false,
+      message: "El campo Correo esta vacio",
+    });
+  } else if (!contrasena) {
+    return res.status(400).json({
+      success: false,
+      message: "El campo Contraseña esta vacio",
     });
   }
-  return res.status(400).json({
-    success: false,
-    message:
-      "Los campos de Nombre, Apelllidos, Correo y Contraseña estan vacios",
-  });
-
   // Validacion de correo de usuario en base de datos que no exista para su registro: ↓
-  let usuarioaVerificar = usuarios.find((usuario) => usuario.correo === correo);
-  if (usuarioaVerificar) {
+  const conexion = await conectar();
+  let query = "SELECT * FROM USUARIOS WHERE Correo = ?";
+  let [usuarioaVerificar] = await conexion.execute(query, [correo]);
+  if (usuarioaVerificar.length > 0) {
     // Mensaje de correo ya existe: ↓
-    return (res = console.log("Este usuario ya existe"));
+    return res.status(400).json({
+      success: false,
+      message: `El usuario ${correo} ya existe con este correo.`,
+    });
   }
   // Encriptar la contraseña original 5 veces
   let salt = await bcryptjs.genSalt(5);
@@ -53,20 +66,13 @@ async function registroSistema(req, res) {
     correo,
     contrasena: nuevaConstrasenaCliente,
   };
-  (console.log(nuevoUsuario), usuarios.push(nuevoUsuario));
-  // Mensaje de usuario agregado: ↓
-  /*eturn res
-    .status(201)
-    .send({ message: `Usuario ${nuevoUsuario.correo} agregado` });
-    */
-
   // Insertar usuario en base de datos MySQL: ↓
   async function iniciarProceso() {
     try {
       // 1. Obtenemos la conexión abierta usando await:↓
       const conexion = await conectar();
       const query =
-        "INSERT INTO USUARIOS (Nombres, Apellidos, Correo, Contraseña) VALUES (?, ?, ?, ?)";
+        "INSERT INTO USUARIOS (Nombres, Apellidos, Correo, contraseña) VALUES (?, ?, ?, ?)";
 
       // 2. Ejecutamos el query con await (con mysql2/promise ya no necesitas los callbacks tradicionales)
       const [resultado] = await conexion.execute(query, [
@@ -87,6 +93,5 @@ async function registroSistema(req, res) {
   iniciarProceso();
 }
 export let methods = {
-  ingresarSistema,
   registroSistema,
 };
