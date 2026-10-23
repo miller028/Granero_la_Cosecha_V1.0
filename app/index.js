@@ -6,6 +6,7 @@ let __dirname = path.dirname(fileURLToPath(import.meta.url));
 //Importarmos los controladores: ↓
 import { methods as authentication } from "./controladores/autenticacionIngresoSescion.js";
 import { methods as recuperacionContrasena } from "./controladores/recuperacionPassword.js";
+import { methods as ingresar } from "./controladores/ingresoSistema.js";
 
 //Servidor:
 let app = express();
@@ -15,14 +16,13 @@ app.listen(app.get("port"), "0.0.0.0", () => {
 });
 
 // Configuracion:
+app.use(express.json());
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/estilos"));
 app.use(express.static(__dirname + "/baseDeDatos"));
 
-app.use(express.json());
-
-//Rutas:
-app.get("/", (req, res) => res.sendFile(__dirname + "/paginas/Login.html")); // Formulario principal
+//Rutas: ↓
+app.get("/", (req, res) => res.sendFile(__dirname + "/paginas/login.html")); // Formulario principal
 app.get("/registro", (req, res) =>
   res.sendFile(__dirname + "/paginas/registrologin.html"),
 ); // Formulario de registro
@@ -31,8 +31,10 @@ app.get("/recuperarPassword", (req, res) =>
 ); // Formulario de recuperacion de contraseña
 app.get("/usuario", (req, res) =>
   res.sendFile(__dirname + "/paginas/admin/usuario.html"),
-);
-app.post("/api/login", authentication.ingresarSistema);
+); // Pagina de bienvenido al sistema
+
+// Metodos: ↓
+app.post("/api/login", ingresar.ingresar);
 app.post("/api/registro", authentication.registroSistema);
 app.post(
   "/api/recuperarPassword",
