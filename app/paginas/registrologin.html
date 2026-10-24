@@ -3,44 +3,95 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registro login</title>
+    <title>Crear cuenta</title>
     <script src="registro.js" defer></script>
     <!-- AQUÍ SE AGREGA LA HOJA DE ESTILOS -->
-    <link rel="stylesheet" href="/registro.css" />
+    <link rel="stylesheet" href="login.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
-  <body>
-    <section class="fondo">
+  <body id="fondo">
+    <div class="card-box">
+      <h2>Crear cuenta</h2>
       <form id="formulario">
-        <table align="center">
-          <h2>Registro de usuarios</h2>
-          <tr>
-            <!-- Fila 1, con 2 Columnas -->
-            <td><label>Nombres:</label></td>
-            <td><input type="text" name="nombre" id="nombres" /></td>
-          </tr>
-          <tr>
-            <!-- Fila 2, con 2 Columnas -->
-            <td><label>Apellidos:</label></td>
-            <td>
-              <input type="text" name="apellidos" id="apellidos" />
-            </td>
-          </tr>
-          <tr>
-            <!-- Fila 3, con 2 Columnas -->
-            <td><label> Correo:</label></td>
-            <td><input type="mail" name="correo" id="correo" /></td>
-          </tr>
-          <tr>
-            <!-- Fila 4, con 2 Columnas -->
-            <td><label> Contraseña:</label></td>
-            <td>
-              <input type="password" name="contrsena" id="contrasena" />
-            </td>
-          </tr>
-        </table>
-        <button type="submit" class="cambioDeColor">Registrarse</button>
+        <div class="mb-3">
+          <label class="form-label">Nombres:</label>
+          <div class="input-group">
+            <span class="input-group-text"
+              ><i class="fa-solid fa-user"></i
+            ></span>
+            <input
+              class="form-control"
+              type="text"
+              name="nombre"
+              id="nombres"
+              placeholder="Nombres completos"
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Apellidos:</label>
+          <div class="input-group">
+            <span class="input-group-text"
+              ><i class="fa-solid fa-user"></i
+            ></span>
+            <input
+              class="form-control"
+              type="text"
+              name="apellidos"
+              id="apellidos"
+              placeholder="Apellidos completos"
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="correo">Correo electronico:</label>
+          <div class="input-group">
+            <span class="input-group-text"
+              ><i class="fa-solid fa-envelope"></i
+            ></span>
+            <input
+              class="form-control"
+              type="email"
+              name="correo"
+              id="correo"
+              placeholder="tuemail@ejemplo.com"
+            />
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="password">Contraseña:</label>
+          <div class="input-group">
+            <span class="input-group-text"
+              ><i class="fa-solid fa-key"></i
+            ></span>
+            <input
+              class="form-control"
+              type="password"
+              name="contrsena"
+              id="contrasena"
+              placeholder="**********"
+            />
+          </div>
+        </div>
+        <button class="bnt-main" type="submit">Registrarse</button>
       </form>
-      <a href="/">Salir</a>
-    </section>
+      <p class="text-center mt-3">
+        ¿Ya tienes una cuenta?<a href="/"> Iniciar sesion</a>
+      </p
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>
