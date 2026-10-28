@@ -33,7 +33,7 @@ app.get("/usuario", (req, res) =>
   res.sendFile(__dirname + "/paginas/admin/usuario.html"),
 ); // Pagina de bienvenido al sistema
 
-// Metodos: ↓
+// Metodos de peticiones a node js: ↓
 app.post("/api/login", ingresar.ingresar);
 app.post("/api/registro", authentication.registroSistema);
 app.post(
