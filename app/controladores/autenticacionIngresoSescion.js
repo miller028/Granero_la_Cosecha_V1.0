@@ -48,7 +48,7 @@ async function registroSistema(req, res) {
   }
   // Validacion de correo de usuario en base de datos que no exista para su registro: ↓
   const conexion = await conectar();
-  let query = "SELECT * FROM USUARIOS WHERE Correo = ?";
+  let query = "SELECT * FROM usuarios WHERE Correo = ?";
   let [usuarioaVerificar] = await conexion.execute(query, [correo]);
   if (usuarioaVerificar.length > 0) {
     // Mensaje de correo ya existe: ↓
@@ -72,7 +72,7 @@ async function registroSistema(req, res) {
       // 1. Obtenemos la conexión abierta usando await:↓
       const conexion = await conectar();
       const query =
-        "INSERT INTO USUARIOS (Nombres, Apellidos, Correo, contraseña) VALUES (?, ?, ?, ?)";
+        "INSERT INTO usuarios (Nombres, Apellidos, Correo, Contraseña) VALUES (?, ?, ?, ?)";
 
       // 2. Ejecutamos el query con await (con mysql2/promise ya no necesitas los callbacks tradicionales)
       const [resultado] = await conexion.execute(query, [
@@ -82,6 +82,11 @@ async function registroSistema(req, res) {
         nuevoUsuario.contrasena,
       ]);
       console.log("¡Usuario insertado con éxito! ID:");
+      // Mensaje de usuario registrado con exito: ↓
+      return res.status(400).json({
+        success: false,
+        message: `Usuario registrado con exito.`,
+      });
 
       // 3. Cerramos la conexión cuando termines de usarla: ↓
       await conexion.end();
