@@ -1,5 +1,9 @@
 https://www.youtube.com/watch?v=fjuIeiA8QkE → link del vidoe de node js
 
+https://www.youtube.com/watch?v=o4ByxKlcZHY ↓ Lind de video para tablas dinamicas en js
+
+https://www.youtube.com/watch?v=LlanZ4RdXBY → link para tablas data table jquery
+
 minuto: 54:24
 
 

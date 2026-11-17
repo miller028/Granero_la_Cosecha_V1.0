@@ -67,6 +67,12 @@ app.get("/admin", verificarToken, (req, res) => {
 app.get("/usuariosRegistrados", (req, res) => {
   res.render("administrador/usuariosRegistrados");
 }); // Pagina de Usuarios registrados
+app.get("/usuario", verificarToken, (req, res) => {
+  res.render("usuario/usuario");
+}); // Pagina de rol de usuario
+app.get("/editarPerfil", (req, res) => {
+  res.render("usuario/perfilUsuario");
+}); // Formulario de editar perfil
 
 // Metodos de peticiones a node js: ↓
 app.post("/api/login", ingresar.ingresar);

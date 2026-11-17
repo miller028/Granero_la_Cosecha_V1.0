@@ -1,0 +1,165 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* Sidebar / Menú Lateral */
+
+.sidebar {
+  width: 320px;
+  background-color: #9d000d;
+  color: #000000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.brand-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+}
+
+.menu-header {
+  font-size: 0.95rem;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 30px;
+  background-color: #ffffff;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.nav-list a {
+  color: #000000;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  display: block;
+  transition: opacity 0.2s;
+}
+
+.nav-list a:hover {
+  opacity: 0.7;
+}
+
+/* Perfil de usuario abajo a la izquierda */
+.user-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 15px;
+}
+
+.avatar-circle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  background-color: transparent;
+  flex-shrink: 0;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  font-size: 0.85rem;
+}
+
+.btn-logout {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.btn-logout:hover {
+  transform: scale(1.1);
+}
+
+/* Contenido Principal */
+.main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Superior */
+.top-header {
+  height: 70px;
+  background-color: #9d000d;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 30px;
+  border-bottom: 1px solid #000000;
+}
+
+.top-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.85rem;
+}
+
+.top-avatar {
+  width: 40px;
+  height: 25px;
+  border: 1px solid #000000;
+  border-radius: 50%;
+}
+
+/* Área de trabajo y Búsqueda */
+.content-area {
+  padding: 25px 35px;
+}
+
+.search-container {
+  position: relative;
+  max-width: 450px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 10px 15px 10px 45px;
+  border-radius: 25px;
+  border: 1.5px solid #000000;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  color: #000000;
+}
