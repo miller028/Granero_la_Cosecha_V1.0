@@ -1,2 +1,14 @@
+node_modules/
 .env
-node_modules
+Credenciales.txt
+~$*
+Base de datos/
+        node_modules/.bin/ejs.cmd
+        node_modules/.bin/ejs.ps1
+        node_modules/.bin/jake
+        node_modules/.bin/jake.cmd
+        node_modules/.bin/jake.ps1
+        node_modules/async/
+        node_modules/ejs/
+        node_modules/filelist/
+        node_modules/jake/

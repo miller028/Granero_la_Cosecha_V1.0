@@ -1,3 +1,4 @@
+import session from "express-session"; // <-- 1. Importa express-session aquí
 import express from "express";
 //fix para __dirname:
 import path from "path";
@@ -8,6 +9,9 @@ import { methods as authentication } from "./controladores/autenticacionIngresoS
 import { methods as recuperacionContrasena } from "./controladores/recuperacionPassword.js";
 import { methods as ingresar } from "./controladores/ingresoSistema.js";
 import { methods as listar } from "./controladores/listarUsuarios.js";
+import { methods as datosPerfilesUsuarios } from "./controladores/datosPerfilesUsuarios.js";
+import { methods as mostrarDatosDeUsuario } from "./controladores/mostrarDatosDeUsuario.js";
+import { methods as fotosUsuario } from "./controladores/fotosUsuario.js";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
 
@@ -25,7 +29,15 @@ app.set("view engine", "ejs"); // Paginas para renderizar.
 app.set("views", path.join(__dirname, "views"));
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/estilos"));
-
+app.use(
+  session({
+    secret: "clave_secreta_para_tu_proyecto",
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  }),
+);
+app.use("/fotosUsuario", fotosUsuario.servirFotos);
 //Rutas: ↓
 app.get("/", (req, res) => res.sendFile(__dirname + "/paginas/login.html")); // Formulario principal
 app.get("/registro", (req, res) =>
@@ -34,17 +46,6 @@ app.get("/registro", (req, res) =>
 app.get("/recuperarPassword", (req, res) =>
   res.sendFile(__dirname + "/paginas/recuperarPassword.html"),
 ); // Formulario de recuperacion de contraseña
-
-/*app.get("/usuario", (req, res) =>
-  res.sendFile(__dirname + "/paginas/admin/usuario.html"),
-); // Pagina de bienvenido al sistema*/
-/*app.get("/administracion", (req, res) =>
-  res.sendFile(__dirname + "/paginas/admin/panelDeControl.html"),
-); // Pagina de rol Administrador*/
-/*app.get("/usuariosRegistrados", (req, res) => 
-  res.sendFile(__dirname + "/paginas/admin/usuariosRegistrados.html"),
-); // Pagina de usuarios registrados en el sistema*/
-
 // Funciónes Middleware para verificar el token de la cookie: ↓
 function verificarToken(req, res, next) {
   let token = req.cookies.JWT; // Lee la cookie que guardas al iniciar sesión
@@ -70,9 +71,6 @@ app.get("/usuariosRegistrados", (req, res) => {
 app.get("/usuario", verificarToken, (req, res) => {
   res.render("usuario/usuario");
 }); // Pagina de rol de usuario
-app.get("/editarPerfil", (req, res) => {
-  res.render("usuario/perfilUsuario");
-}); // Formulario de editar perfil
 
 // Metodos de peticiones a node js: ↓
 app.post("/api/login", ingresar.ingresar);
@@ -82,3 +80,9 @@ app.post(
   recuperacionContrasena.recuperacionContrasena,
 );
 app.get("/api/usuarios", listar.listarUsuarios);
+app.post(
+  "/api/perfilUsuario",
+  fotosUsuario.actualizar.single("foto"),
+  datosPerfilesUsuarios.datosPerfilesUsuarios,
+);
+app.get("/editarPerfil", mostrarDatosDeUsuario.mostrarPerfil); // Formulario de editar perfil

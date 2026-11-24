@@ -10,6 +10,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Editar pefil</title>
+     <script src="perfilUsuario.js" defer></script>
     <link href="styles.css" rel="stylesheet" />
     <link
       rel="stylesheet"
@@ -29,7 +30,7 @@
             <ol class="breadcrumb mb-4">
               <li class="breadcrumb-item active">Datos personales</li>
             </ol>
-            <form class="row g-3">
+            <form id="datosUsuario" enctype="multipart/form-data"   class="row g-3">
               <div class="col-md-4">
                 <label class="form-label">Nombres:</label>
                 <div class="input-group">
@@ -39,8 +40,9 @@
                   <input
                     class="form-control"
                     type="text"
-                    name="nombre"
+                    name="nombres"
                     id="nombres"
+                    value="<%= usuario?.Nombres || '' %>"
                   />
                 </div>
               </div>
@@ -55,6 +57,7 @@
                     type="text"
                     name="apellidos"
                     id="apellidos"
+                    value="<%= usuario?.Apellidos || '' %>"
                   />
                 </div>
               </div>
@@ -86,6 +89,7 @@
                     maxlength="20"
                     name="cedula"
                     id="cedula"
+                    value="<%= usuario?.Cedula || '' %>"
                     required
                   />
                 </div>
@@ -101,6 +105,7 @@
                     type="date"
                     name="fechaNacimiento"
                     id="fechaNacimiento"
+                    value="<%= usuario?.Fecha_nacimiento || '' %>"
                     required
                   />
                 </div>
@@ -119,6 +124,7 @@
                     maxlength="15"
                     name="telefono"
                     id="telefono"
+                    value="<%= usuario?.Telefono || '' %>"
                     required
                   />
                 </div>
@@ -135,6 +141,7 @@
                     maxlength="50"
                     name="barrio"
                     id="barrio"
+                    value="<%= usuario?.Barrio || '' %>"
                     required
                   />
                 </div>
@@ -151,6 +158,7 @@
                     maxlength="40"
                     name="nomenclatura"
                     id="nomenclatura"
+                    value="<%= usuario?.Nomenclatura || '' %>"
                     required
                   />
                 </div>
@@ -167,8 +175,14 @@
                     name="foto"
                     id="foto"
                     accept=".jpg, .jpeg, .png"
+                    "<%= usuario?.Foto_url? '' : 'required' %>"
                     required
                   />
+                  <% if (usuario.Foto_url) { %>
+  <div class="mt-2">
+    <img src="<%= usuario.Foto_url %>" alt="Foto de perfil" class="img-thumbnail" style="max-width: 150px;">
+  </div>
+<% } %>
                 </div>
                 </div>
               </div>

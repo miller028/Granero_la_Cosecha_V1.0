@@ -27,12 +27,14 @@ async function ingresar(req, res) {
       let conexion = await conectar();
       // 2. Realiza la consulta si el correo ya existe en la tabla USUARIOS: ↓
       let query =
-        "SELECT  Correo, Contraseña AS password FROM usuarios WHERE Correo = ?";
+        "SELECT  Id_usuario, Correo, Contraseña AS password FROM usuarios WHERE Correo = ?";
       let [resultado] = await conexion.execute(query, [correo]);
       //3.  Validacion si el correo existe: ↓
       if (resultado.length > 0) {
         //5. Guardamos el resultado en una nueva variable: ↓
         let usuarioEncontrado = resultado[0].password;
+        let idUsuario = resultado[0].Id_usuario; // Captura del Id del usuario
+        console.log("El Id del usuario es: " + idUsuario);
         //6. Validar contraseñas iguales: ↓
         let contrasenaValida = await bcrypt.compare(
           contrasena,
@@ -44,6 +46,13 @@ async function ingresar(req, res) {
             message: "La contraseña es incorrecta.",
           });
         } else {
+          // GUARDAS EL ID EN LA SESIÓN AQUÍ
+          req.session.idUsuario = idUsuario;
+          // 💡 Añade este console.log aquí mismo para verificar en la terminal:
+          console.log(
+            "--> ¡ID guardado exitosamente en la sesión:",
+            req.session.idUsuario,
+          );
           //8. Autenticacion mediante tokens: ↓
           let generarToken = jsonwebtoken.sign(
             { correo: correo },
@@ -74,7 +83,7 @@ async function ingresar(req, res) {
         }
       }
       //4. Si no existe el correo en la base de datos: ↓
-      return res.status(400).json({
+      return res.status(404).json({
         success: false,
         message: `error durante login → correo ${correo} no existe. `,
       });
@@ -84,7 +93,6 @@ async function ingresar(req, res) {
       console.error("Error en el servidor:", error);
     }
   }
-
   //9. Ejecutamos la función principal
   iniciarProceso();
 }
