@@ -12,3 +12,5 @@ Base de datos/
         node_modules/ejs/
         node_modules/filelist/
         node_modules/jake/
+Videos/
+*.mp4
