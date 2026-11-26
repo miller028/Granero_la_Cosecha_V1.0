@@ -4,3 +4,6 @@ app/archivos/fotosUsuario/
 node_modules/
 .env
 app/archivos/fotosUsuario/
+
+*.mp4
+app/Videos/
