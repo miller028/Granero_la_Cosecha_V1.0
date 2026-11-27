@@ -1,12 +1,19 @@
 import mysql from "mysql2/promise";
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+// Resuelve la ruta hacia LOGIN/.env sin importar desde qué carpeta ejecutes Node: ↓
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 async function conectar() {
   try {
     const conexion = await mysql.createConnection({
-      host: "tiendamiller.cs7maoe2y8sf.us-east-1.rds.amazonaws.com",
-      database: "tiendaMiller",
-      user: "admin",
-      password: "9Vp3tm5ZjT",
-      port: 3306,
+      host: process.env.DB_HOST,
+      database: process.env.DB_NAME,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASSWORD,
+      port: Number(process.env.DB_PORT) || 3306,
     });
     console.log("Conexion exitosa a base de datos MySQL");
     return conexion;

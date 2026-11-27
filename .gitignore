@@ -1,9 +1,29 @@
+# Dependencias y entorno
 node_modules/
 .env
-app/archivos/fotosUsuario/
-node_modules/
-.env
-app/archivos/fotosUsuario/
+.env.*
+!.env.example
 
-*.mp4
+# Archivos subidos por usuarios y multimedia
+app/archivos/*
+!app/archivos/.gitkeep
 app/Videos/
+*.mp4
+tmp/
+
+# Respaldos locales de BD y temporales de Office
+Base de datos/
+app/Base de datos/
+*.sql
+~$*
+
+# Logs de Node / npm (útiles cuando corres el servidor en Debian)
+logs/
+*.log
+npm-debug.log*
+
+# Archivos del sistema operativo (Windows / Linux / macOS) y editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
